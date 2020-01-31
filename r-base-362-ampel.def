@@ -67,7 +67,7 @@ From: r-base:latest
     export TZ=UTC
 
 %runscript
-    R --vanilla --no-save
+    LANG=en R --vanilla --no-save
 
 %labels
     Author Sebastian Gibb <mail@sebastiangibb.de>
