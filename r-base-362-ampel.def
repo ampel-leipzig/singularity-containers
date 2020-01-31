@@ -4,12 +4,14 @@ From: r-base:latest
 %post
     BUILDDEPS="libcurl4-openssl-dev \
         libssl-dev \
-        libxml2-dev"
+        libxml2-dev \
+        libzmq3-dev"
 
     apt-get update -qq
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         $BUILDDEPS \
-        libxml2
+        libxml2 \
+        libzmq5
 
     # run R
     Rscript -e 'install.packages("BiocManager")'
@@ -17,8 +19,8 @@ From: r-base:latest
     Rscript -e 'BiocManager::install(
         c(
             "drake",
-            "future.batchtools",
             "mlr",
+            "clustermq",
             "survival",
             "dplyr",
             "ggplot2",
