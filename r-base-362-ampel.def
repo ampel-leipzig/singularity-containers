@@ -11,8 +11,7 @@ From: r-base:latest
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         $BUILDDEPS \
         libxml2 \
-        libzmq5 \
-        slurm-client
+        libzmq5
 
     # run R
     Rscript -e 'install.packages("BiocManager")'
