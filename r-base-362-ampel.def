@@ -1,0 +1,74 @@
+Bootstrap: docker
+From: r-base:latest
+
+%post
+    BUILDDEPS="libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev"
+
+    apt-get update -qq
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        $BUILDDEPS \
+        libxml2
+
+    # run R
+    Rscript -e 'install.packages("BiocManager")'
+
+    Rscript -e 'BiocManager::install(
+        c(
+            "drake",
+            "future.batchtools",
+            "mlr",
+            "survival",
+            "dplyr",
+            "ggplot2",
+            "lubridate",
+            "readr",
+            "readxl",
+            "rlang",
+            "rmarkdown",
+            "rprojroot",
+            "devtools",
+            "callr",
+            "cowplot",
+            "testthat",
+            "roxygen2",
+            "knitr",
+            "bookdown",
+            "skimr",
+            "DiagrammeR",
+            "tab",
+            "tidyr",
+            "survminer",
+            "corrplot",
+            "survivalROC",
+            "mmpf",
+            "pROC"
+        ),
+        ask = FALSE,
+        clean = TRUE,
+        Ncpus = 3,
+        INSTALL_opts = c("--strip", "--no-docs", "--no-multiarch")
+    )'
+
+    ## cleanup
+    apt-get purge -y $BUILDDEPS
+    apt-get autoremove --purge -y
+    apt-get autoclean -y
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    export TZ=UTC
+
+%runscript
+    R --vanilla --no-save
+
+%labels
+    Author Sebastian Gibb <mail@sebastiangibb.de>
+    Version v0.0.1
+
+%help
+    This is a container with R and all necessary packages preinstalled to
+    perform machine learning for the AMPEL project.
