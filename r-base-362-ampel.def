@@ -53,6 +53,8 @@ From: r-base:latest
         INSTALL_opts = c("--strip", "--no-docs", "--no-multiarch")
     )'
 
+    Rscript -e 'remove.packages("BiocManager")'
+
     ## cleanup
     apt-get purge -y $BUILDDEPS
     apt-get autoremove --purge -y
