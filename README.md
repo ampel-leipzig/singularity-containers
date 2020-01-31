@@ -10,9 +10,6 @@ apt install singularity-container siftool
 
 ```
 # needed for user build
-sudo echo 1 > /proc/sys/kernel/unprivileged_userns_clone
+# sudo echo 1 > /proc/sys/kernel/unprivileged_userns_clone
 SINGULARITY_TMPDIR=$(pwd) singularity --debug build --fakeroot r-base-362-ampel.sif r-base-362-ampel.def
-
-# OR
-sudo SINGULARITY_TMPDIR=$(pwd) singularity --debug build --force r-base-362-ampel.sif r-base-362-ampel.def
 ```
