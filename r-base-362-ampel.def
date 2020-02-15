@@ -5,7 +5,8 @@ From: r-base:latest
     BUILDDEPS="libcurl4-openssl-dev \
         libssl-dev \
         libxml2-dev \
-        libzmq3-dev"
+        libzmq3-dev \
+        cabal-install"
 
     apt-get update -qq
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -55,11 +56,29 @@ From: r-base:latest
 
     Rscript -e 'remove.packages("BiocManager")'
 
+    cabal new-update
+    ## workaround to get cabal new-install working
+    ## https://github.com/haskell/cabal/issues/5516
+    mkdir -p /root/.cabal/store/ghc-8.6.5/package.db
+    cabal new-install --dependencies-only \
+        pandoc \
+        pandoc-citeproc \
+        pandoc-citeproc-preamble \
+        pandoc-crossref \
+        latex-formulae-pandoc &&\
+    cabal new-install --global \
+        pandoc \
+        pandoc-citeproc \
+        pandoc-citeproc-preamble \
+        pandoc-crossref \
+        latex-formulae-pandoc
+
     ## cleanup
     apt-get purge -y $BUILDDEPS
     apt-get autoremove --purge -y
     apt-get autoclean -y
     rm -rf /var/lib/apt/lists/*
+    rm -rf /root/.cabal/{logs,packages,store}
 
 %environment
     export LC_ALL=en_US.UTF-8
