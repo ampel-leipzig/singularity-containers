@@ -1,6 +1,9 @@
 Bootstrap: docker
 From: r-base:latest
 
+%files
+    files/root/.cabal/config /root/.cabal/config
+
 %post
     BUILDDEPS="libcurl4-openssl-dev \
         libssl-dev \
@@ -60,25 +63,26 @@ From: r-base:latest
     ## workaround to get cabal new-install working
     ## https://github.com/haskell/cabal/issues/5516
     mkdir -p /root/.cabal/store/ghc-8.6.5/package.db
-    cabal new-install --dependencies-only \
-        pandoc \
-        pandoc-citeproc \
-        pandoc-citeproc-preamble \
-        pandoc-crossref \
-        latex-formulae-pandoc &&\
-    cabal new-install --global \
+    cabal new-install \
         pandoc \
         pandoc-citeproc \
         pandoc-citeproc-preamble \
         pandoc-crossref \
         latex-formulae-pandoc
 
+    ## workaround to get the pandoc binaries into useable directories
+    ## `cabal install` --prefix/--global etc. seems not to work
+    ## (even not in the config file, I know the want to provide nix-style
+    ## package-manager)
+    mv --force /root/.cabal/store/ghc-8.6.5/pandoc-*/bin/* /usr/bin/
+
     ## cleanup
     apt-get purge -y $BUILDDEPS
     apt-get autoremove --purge -y
     apt-get autoclean -y
+    rm -rf /root/.cabal
+    rm -rf /usr/share/doc/*
     rm -rf /var/lib/apt/lists/*
-    rm -rf /root/.cabal/{logs,packages,store}
 
 %environment
     export LC_ALL=en_US.UTF-8
