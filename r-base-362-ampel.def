@@ -3,6 +3,7 @@ From: r-base:latest
 
 %files
     files/root/.cabal/config /root/.cabal/config
+    files/usr/local/bin/instpkg.R /usr/local/bin/instpkg.R
 
 %post
     BUILDDEPS="libcurl4-openssl-dev \
@@ -17,45 +18,43 @@ From: r-base:latest
         libxml2 \
         libzmq5
 
-    # run R
-    Rscript -e 'install.packages("BiocManager")'
-
-    Rscript -e 'BiocManager::install(
-        c(
-            "drake",
-            "mlr",
-            "clustermq",
-            "survival",
-            "dplyr",
-            "ggplot2",
-            "lubridate",
-            "readr",
-            "readxl",
-            "rlang",
-            "rmarkdown",
-            "rprojroot",
-            "devtools",
-            "callr",
-            "cowplot",
-            "testthat",
-            "roxygen2",
-            "knitr",
-            "bookdown",
-            "skimr",
-            "DiagrammeR",
-            "tab",
-            "tidyr",
-            "survminer",
-            "corrplot",
-            "survivalROC",
-            "mmpf",
-            "pROC"
-        ),
-        ask = FALSE,
-        clean = TRUE,
-        Ncpus = 3,
-        INSTALL_opts = c("--strip", "--no-docs", "--no-multiarch")
-    )'
+    ## run R
+    /usr/local/bin/instpkg.R \
+        Cairo \
+        DiagrammeR \
+        Hmisc \
+        bookdown \
+        callr \
+        clustermq \
+        corrplot \
+        cowplot \
+        devtools \
+        dplyr \
+        drake \
+        ggplot2 \
+        glmnet \
+        knitr \
+        lubridate \
+        mlr \
+        mmpf \
+        pROC \
+        randomForestSRC \
+        ranger \
+        rappdirs \
+        readr \
+        readxl \
+        rlang \
+        rmarkdown \
+        roxygen2 \
+        rprojroot \
+        skimr \
+        survAUC \
+        survival \
+        survivalROC \
+        survminer \
+        tab \
+        testthat \
+        tidyr
 
     Rscript -e 'remove.packages("BiocManager")'
 
@@ -82,6 +81,7 @@ From: r-base:latest
     apt-get autoclean -y
     rm -rf /root/.cabal
     rm -rf /usr/share/doc/*
+    rm -rf /usr/local/bin/inst*
     rm -rf /var/lib/apt/lists/*
 
 %environment
