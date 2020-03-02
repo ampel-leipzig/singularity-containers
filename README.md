@@ -1,4 +1,4 @@
-# Singularity
+# Singularity Containers
 
 ## Local Install
 
@@ -14,5 +14,15 @@ apt install singularity-container siftool
 SINGULARITY_TMPDIR=$(pwd) singularity --debug build --fakeroot r-ver-362-pandoc-ampel.sif r-ver-362-pandoc-ampel.def
 
 # or
-sudo SINGULARITY_TMPDIR=$(pwd) singularity --debug build --force r-base-362-pandoc-ampel.sif r-ver-362-pandoc-ampel.def
+sudo SINGULARITY_TMPDIR=$(pwd) singularity --debug build --force r-ver-362-pandoc-ampel.sif r-ver-362-pandoc-ampel.def
+```
+
+## Run
+
+```sh
+## run R
+singularity exec r-ver-362-pandoc-ampel.sif
+
+## shell access
+singularity shell r-ver-362-pandoc-ampel.sif
 ```
