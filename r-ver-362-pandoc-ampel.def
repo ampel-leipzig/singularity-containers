@@ -86,22 +86,12 @@ From: rocker/r-ver:3.6.2
     Rscript -e 'remove.packages("BiocManager")'
 
     cabal update
-    ## workaround to get cabal new-install working
-    ## https://github.com/haskell/cabal/issues/5516
-    GHCV=$(ghc --version | sed 's#[^0-9.]##g')
-    mkdir -p /root/.cabal/store/ghc-${GHCV}/package.db
-    cabal install \
+    cabal install --global \
         pandoc \
         pandoc-citeproc \
         pandoc-citeproc-preamble \
         pandoc-crossref \
         latex-formulae-pandoc
-
-    ## workaround to get the pandoc binaries into useable directories
-    ## `cabal install` --prefix/--global etc. seems not to work
-    ## (even not in the config file, I know the want to provide nix-style
-    ## package-manager)
-    mv --force /root/.cabal/store/ghc-*/pandoc-*/bin/* /usr/bin/
 
     ## cleanup
     apt-get purge -y $BUILDDEPS
