@@ -1,13 +1,40 @@
 Bootstrap: docker
-From: r-base:latest
+From: rocker/r-ver:3.6.2
 
 %files
     files/root/.cabal/config /root/.cabal/config
     files/usr/local/bin/instpkg.R /usr/local/bin/instpkg.R
 
 %post
-    BUILDDEPS="libcurl4-openssl-dev \
+    BUILDDEPS="curl \
+        default-jdk \
+        libbz2-dev \
+        libcairo2-dev \
+        libcurl4-openssl-dev \
+        libpango1.0-dev \
+        libjpeg-dev \
+        libicu-dev \
+        libpcre3-dev \
+        libpng-dev \
+        libreadline-dev \
         libssl-dev \
+        libtiff5-dev \
+        liblzma-dev \
+        libx11-dev \
+        libxt-dev \
+        perl \
+        tcl8.6-dev \
+        tk8.6-dev \
+        texinfo \
+        texlive-extra-utils \
+        texlive-fonts-recommended \
+        texlive-fonts-extra \
+        texlive-latex-recommended \
+        x11proto-core-dev \
+        xauth \
+        xfonts-base \
+        xvfb \
+        zlib1g-dev \
         libxml2-dev \
         libzmq3-dev \
         cabal-install"
@@ -58,11 +85,12 @@ From: r-base:latest
 
     Rscript -e 'remove.packages("BiocManager")'
 
-    cabal new-update
+    cabal update
     ## workaround to get cabal new-install working
     ## https://github.com/haskell/cabal/issues/5516
-    mkdir -p /root/.cabal/store/ghc-8.6.5/package.db
-    cabal new-install \
+    GHCV=$(ghc --version | sed 's#[^0-9.]##g')
+    mkdir -p /root/.cabal/store/ghc-${GHCV}/package.db
+    cabal install \
         pandoc \
         pandoc-citeproc \
         pandoc-citeproc-preamble \
@@ -73,7 +101,7 @@ From: r-base:latest
     ## `cabal install` --prefix/--global etc. seems not to work
     ## (even not in the config file, I know the want to provide nix-style
     ## package-manager)
-    mv --force /root/.cabal/store/ghc-8.6.5/pandoc-*/bin/* /usr/bin/
+    mv --force /root/.cabal/store/ghc-*/pandoc-*/bin/* /usr/bin/
 
     ## cleanup
     apt-get purge -y $BUILDDEPS
