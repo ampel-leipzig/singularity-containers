@@ -42,6 +42,9 @@ From: rocker/r-ver:3.6.2
     apt-get update -qq
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         $BUILDDEPS \
+        libsm6 \
+        libx11-6 \
+        libxt6 \
         libxml2 \
         libzmq5
 
