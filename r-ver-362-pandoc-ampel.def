@@ -63,6 +63,7 @@ From: rocker/r-ver:3.6.2
         drake \
         ggplot2 \
         glmnet \
+        kknn \
         knitr \
         lubridate \
         mlr \
