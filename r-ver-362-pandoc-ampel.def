@@ -82,6 +82,7 @@ From: rocker/r-ver:3.6.2
         survAUC \
         survival \
         survivalROC \
+        survivalsvm \
         survminer \
         tab \
         testthat \
