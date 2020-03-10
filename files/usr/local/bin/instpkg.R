@@ -1,9 +1,10 @@
 #!/usr/local/bin/Rscript --vanilla --default-packages=utils
 args <- commandArgs(TRUE)
 
-repos <- structure(c(CRAN="https://cran.wu.ac.at"))
-options(repos=repos, menu.graphics=FALSE)
-rm(repos)
+options(repos =
+    c(CRAN = "https://mran.revolutionanalytics.com/snapshot/2020-03-01"),
+    menu.graphics = FALSE
+)
 
 install <- function(pkgs, ...) {
     capture <- function(e) {
@@ -27,8 +28,8 @@ install <- function(pkgs, ...) {
                 ask = FALSE,
                 clean = TRUE,
                 Ncpus = 3L,
-                update = TRUE, 
-                checkBuilt = TRUE, 
+                update = TRUE,
+                checkBuilt = TRUE,
                 INSTALL_opts = c("--strip", "--no-docs", "--no-multiarch")
             ),
             warning = capture
