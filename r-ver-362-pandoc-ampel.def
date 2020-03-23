@@ -61,14 +61,17 @@ From: rocker/r-ver:3.6.2
         devtools \
         dplyr \
         drake \
+        GGally \
         ggplot2 \
         glmnet \
-        kknn \
         knitr \
         lubridate \
-        mlr \
-        mmpf \
+        mlr3 \
+        mlr3proba \
+        mlr3tuning \
+        mlr3viz \
         pROC \
+        paradox \
         randomForestSRC \
         ranger \
         rappdirs \
