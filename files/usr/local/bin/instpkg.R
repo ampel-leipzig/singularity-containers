@@ -2,7 +2,7 @@
 args <- commandArgs(TRUE)
 
 options(repos =
-    c(CRAN = "https://mran.revolutionanalytics.com/snapshot/2020-03-01"),
+    c(CRAN = "https://cran.microsoft.com/snapshot/2020-03-10"), ## mlr3 0.1.8 needed, 2020-03-09
     menu.graphics = FALSE
 )
 
