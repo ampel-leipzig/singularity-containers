@@ -15,6 +15,9 @@ SINGULARITY_TMPDIR=$(pwd) singularity --debug build --fakeroot r-ver-362-pandoc-
 
 # or
 sudo SINGULARITY_TMPDIR=$(pwd) singularity --debug build --force r-ver-362-pandoc-ampel.sif r-ver-362-pandoc-ampel.def
+
+# or
+make
 ```
 
 ## Run
