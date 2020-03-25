@@ -62,6 +62,7 @@ From: rocker/r-ver:3.6.2
         dplyr \
         drake \
         future \
+        future.apply \
         future.batchtools \
         future.callr \
         GGally \
