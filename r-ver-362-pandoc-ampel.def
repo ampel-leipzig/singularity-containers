@@ -93,7 +93,8 @@ From: rocker/r-ver:3.6.2
         survminer \
         tab \
         testthat \
-        tidyr
+        tidyr \
+        vdiffr
 
     Rscript -e 'remove.packages("BiocManager")'
 
