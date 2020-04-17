@@ -121,7 +121,7 @@ From: rocker/r-ver:3.6.2
     export TZ=UTC
 
 %runscript
-    LANG=en R --vanilla --no-save
+    LANG=en R --vanilla
 
 %labels
     Author Sebastian Gibb <mail@sebastiangibb.de>
