@@ -2,7 +2,8 @@
 args <- commandArgs(TRUE)
 
 options(repos =
-    c(CRAN = "https://cran.microsoft.com/snapshot/2020-03-21"), ## mlr3proba 0.1.4 needed, 2020-03-20
+    c(CRAN = paste0("https://cran.microsoft.com/snapshot/", args[1L])),
+    download.file.method = "libcurl",
     menu.graphics = FALSE
 )
 
@@ -37,4 +38,4 @@ install <- function(pkgs, ...) {
     }
 }
 
-quit("no", as.numeric(inherits(try(install(args)), "try-error")))
+quit("no", as.numeric(inherits(try(install(args[-1L])), "try-error")))
