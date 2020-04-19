@@ -6,7 +6,6 @@ From: rocker/r-ver:3.6.3
     files/usr/local/bin/instpkg.R /usr/local/bin/instpkg.R
 
 %post
-    MRANDATE="2020-04-17" ## mlr3proba 0.1.5 needed, 2020-04-16
     BUILDDEPS="curl \
         default-jdk \
         libbz2-dev \
@@ -51,7 +50,6 @@ From: rocker/r-ver:3.6.3
 
     ## run R
     /usr/local/bin/instpkg.R \
-        "${MRANDATE}" \
         Cairo \
         DiagrammeR \
         Hmisc \

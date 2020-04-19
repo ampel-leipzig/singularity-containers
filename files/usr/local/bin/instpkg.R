@@ -1,11 +1,8 @@
 #!/usr/local/bin/Rscript --vanilla --default-packages=utils
 args <- commandArgs(TRUE)
 
-options(repos =
-    c(
-        CRAN = paste0("https://cran.microsoft.com/snapshot/", args[1L]),
-        mlr3learners = "https://mlr3learners.github.io/mlr3learners.drat"
-    ),
+options(
+    repos = c(CRAN = "https://cran.wu.ac.at"),
     download.file.method = "libcurl",
     menu.graphics = FALSE
 )
@@ -41,4 +38,4 @@ install <- function(pkgs, ...) {
     }
 }
 
-quit("no", as.numeric(inherits(try(install(args[-1L])), "try-error")))
+quit("no", as.numeric(inherits(try(install(args)), "try-error")))
