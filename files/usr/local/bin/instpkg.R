@@ -2,7 +2,10 @@
 args <- commandArgs(TRUE)
 
 options(repos =
-    c(CRAN = paste0("https://cran.microsoft.com/snapshot/", args[1L])),
+    c(
+        CRAN = paste0("https://cran.microsoft.com/snapshot/", args[1L]),
+        mlr3learners = "https://mlr3learners.github.io/mlr3learners.drat"
+    ),
     download.file.method = "libcurl",
     menu.graphics = FALSE
 )

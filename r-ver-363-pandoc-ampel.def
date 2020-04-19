@@ -6,7 +6,7 @@ From: rocker/r-ver:3.6.3
     files/usr/local/bin/instpkg.R /usr/local/bin/instpkg.R
 
 %post
-    MRANDATE="2020-03-21" ## mlr3proba 0.1.4 needed, 2020-03-20
+    MRANDATE="2020-04-17" ## mlr3proba 0.1.5 needed, 2020-04-16
     BUILDDEPS="curl \
         default-jdk \
         libbz2-dev \
@@ -76,6 +76,9 @@ From: rocker/r-ver:3.6.3
         mlr3proba \
         mlr3tuning \
         mlr3viz \
+        mlr3learners.randomforestsrc \
+        mlr3learners.survival \
+        mlr3learners.survivalsvm \
         pROC \
         paradox \
         randomForestSRC \
