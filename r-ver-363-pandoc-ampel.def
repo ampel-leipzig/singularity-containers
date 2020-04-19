@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/r-ver:3.6.2
+From: rocker/r-ver:3.6.3
 
 %files
     files/root/.cabal/config /root/.cabal/config
