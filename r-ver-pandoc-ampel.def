@@ -97,7 +97,8 @@ From: rocker/r-ver:3.6.3
         tab \
         testthat \
         tidyr \
-        vdiffr
+        vdiffr \
+        xgboost
 
     Rscript -e 'remove.packages("BiocManager")'
 
