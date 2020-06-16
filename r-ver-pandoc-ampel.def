@@ -79,6 +79,7 @@ From: rocker/r-ver:3.6.3
         mlr3learners/mlr3learners.survivalsvm \
         pROC \
         paradox \
+        pec \
         randomForestSRC \
         ranger \
         rappdirs \
