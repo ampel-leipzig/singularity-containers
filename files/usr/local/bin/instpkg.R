@@ -2,7 +2,10 @@
 args <- commandArgs(TRUE)
 
 options(
-    repos = c(CRAN = "https://cran.wu.ac.at"),
+    repos = c(
+        CRAN='https://cran.wu.ac.at',
+        mlr3learners = 'https://mlr3learners.github.io/mlr3learners.drat'
+    ),
     download.file.method = "libcurl",
     menu.graphics = FALSE
 )
@@ -27,6 +30,7 @@ install <- function(pkgs, ...) {
             BiocManager::install(
                 pkgs,
                 ask = FALSE,
+                dependencies = TRUE,
                 clean = TRUE,
                 Ncpus = 3L,
                 update = TRUE,

@@ -71,12 +71,14 @@ From: rocker/r-ver:3.6.3
         knitr \
         lubridate \
         mlr3 \
+        mlr3learners \
+        mlr3learners.randomforestsrc \
+        mlr3learners.survival \
+        mlr3learners.survivalsvm \
         mlr3proba \
         mlr3tuning \
+        mlr3pipelines \
         mlr3viz \
-        mlr3learners/mlr3learners.randomforestsrc \
-        mlr3learners/mlr3learners.survival \
-        mlr3learners/mlr3learners.survivalsvm \
         pROC \
         paradox \
         pec \
