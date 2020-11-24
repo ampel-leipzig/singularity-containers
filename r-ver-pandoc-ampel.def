@@ -48,11 +48,11 @@ From: rocker/r-ver:3.6.3
         libxml2 \
         libzmq5
 
-    ## run R
     /usr/local/bin/instpkg.R \
         Cairo \
         DiagrammeR \
         Hmisc \
+        beeswarm \
         bookdown \
         callr \
         clustermq \
@@ -92,6 +92,7 @@ From: rocker/r-ver:3.6.3
         roxygen2 \
         rprojroot \
         skimr \
+        smotefamily \
         survAUC \
         survival \
         survivalROC \
@@ -100,6 +101,7 @@ From: rocker/r-ver:3.6.3
         tab \
         testthat \
         tidyr \
+        timeROC \
         vdiffr \
         xgboost
 
